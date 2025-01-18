@@ -7,11 +7,12 @@ public class Main {
 
 		// 1. Variables
 		Scanner scanner = new Scanner(System.in);
-		String nombreOp;
+		String nombreOperacion;
 		double resultado = 0;
 
 		// 2. Mostrar menu y pedir operación a realizar
-		// TODO hacer que la calculadora funcione en bucle hasta que el usuario decida salir
+		// TODO hacer que la calculadora funcione en bucle hasta que el usuario decida
+		// salir
 		String operacion = mostrarMenu(scanner);
 
 		// 3. Pedir operandos
@@ -19,29 +20,25 @@ public class Main {
 		double numero2 = leerNumero(scanner, "Introduce el segundo número: ");
 
 		// 4. Evaluar operacion y realizarla
-		// FIXME (BUG, realiza solamente divisiones aunque selecciones otro tipo de operacion)
+		// FIXME (BUG, realiza solamente divisiones aunque selecciones otro tipo de
+		// operacion)
 		switch (operacion.toLowerCase()) {
 		case "1":
 			// Sumar
-			nombreOp = "suma";
+			nombreOperacion = "suma";
 			resultado = numero1 + numero2;
 		case "2":
 			// Restar
-			nombreOp = "resta";
+			nombreOperacion = "resta";
 			resultado = numero1 - numero2;
 		case "3":
 			// Multiplicar
-			nombreOp = "multiplicacion";
+			nombreOperacion = "multiplicacion";
 			resultado = numero1 * numero2;
 		case "4":
 			// Dividir
-			nombreOp = "division";
-			if (numero2 != 0) {
-				resultado = numero1 / numero2;
-			} else {
-				System.out.println("Error: División por cero no permitida.");
-				return;
-			}
+			nombreOperacion = "division";
+			resultado = divisionOp(resultado, numero1, numero2);
 			break;
 		default:
 			System.out.println("Operación no válida.");
@@ -49,21 +46,34 @@ public class Main {
 		}
 
 		// 5. Mostrar resultado
-		System.out.println("\nEl resultado de la " + nombreOp + " es: " + resultado);
+		System.out.println("\nEl resultado de la " + nombreOperacion + " es: " + resultado);
+	}
+
+	private static double divisionOp(double resultado, double numero1, double numero2) {
+		if (numero2 != 0) {
+			resultado = numero1 / numero2;
+		} else {
+			System.out.println("Error: División por cero no permitida.");
+			return;
+		}
+		return resultado;
 	}
 
 	/**
 	 * Muestra un mensaje y guarda los numeros introducidos
+	 * 
 	 * @param scanner
 	 * @param mensaje
 	 * @return
 	 */
 	private static double leerNumero(Scanner scanner, String mensaje) {
-	    System.out.print(mensaje);
-	    return scanner.nextDouble();
+		System.out.print(mensaje);
+		return scanner.nextDouble();
 	}
+
 	/**
 	 * Muestra un menu inicial y guarda la operacion a realizar seleccionada
+	 * 
 	 * @param scanner
 	 * @return
 	 */
