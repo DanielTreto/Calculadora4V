@@ -22,23 +22,32 @@ public class Main {
 		// 4. Evaluar operacion y realizarla
 		// FIXME (BUG, realiza solamente divisiones aunque selecciones otro tipo de
 		// operacion)
+		// siempre al final de un case poner un break
 		switch (operacion.toLowerCase()) {
 		case "1":
 			// Sumar
 			nombreOperacion = "suma";
 			resultado = numero1 + numero2;
+			break;
 		case "2":
 			// Restar
 			nombreOperacion = "resta";
 			resultado = numero1 - numero2;
+			break;
 		case "3":
 			// Multiplicar
 			nombreOperacion = "multiplicacion";
 			resultado = numero1 * numero2;
+			break;
 		case "4":
 			// Dividir
 			nombreOperacion = "division";
-			resultado = divisionOp(resultado, numero1, numero2);
+			if (numero2 != 0) {
+				resultado = numero1 / numero2;
+			} else {
+				System.out.println("Error: División por cero no permitida.");
+				return;
+			}
 			break;
 		default:
 			System.out.println("Operación no válida.");
@@ -47,16 +56,6 @@ public class Main {
 
 		// 5. Mostrar resultado
 		System.out.println("\nEl resultado de la " + nombreOperacion + " es: " + resultado);
-	}
-
-	private static double divisionOp(double resultado, double numero1, double numero2) {
-		if (numero2 != 0) {
-			resultado = numero1 / numero2;
-		} else {
-			System.out.println("Error: División por cero no permitida.");
-			return;
-		}
-		return resultado;
 	}
 
 	/**
